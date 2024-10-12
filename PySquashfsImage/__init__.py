@@ -128,7 +128,8 @@ class SquashFsImage(object):
         return cls(open(path, "rb"), offset)
 
     def close(self):
-        self._fd.close()
+        if self._fd is not None:
+            self._fd.close()
         self._fd = None
 
     def _read_super(self):
